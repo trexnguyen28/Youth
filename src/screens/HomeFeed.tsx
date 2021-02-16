@@ -1,6 +1,27 @@
 import React from 'react';
-import {View, StyleSheet, SafeAreaView, Image, Text} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  Image,
+  Text,
+  Dimensions,
+  ImageBackground,
+} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
+MaterialIcons.loadFont();
+
+const DEVICE_HEIGHT = Dimensions.get('window').height;
+const DEVICE_WIDTH = Dimensions.get('window').width;
+
+const STORY_ITEMS_PER_LINE = 3.75;
+const STORY_ITEM_WIDTH = Math.round(
+  Math.min(DEVICE_HEIGHT, DEVICE_WIDTH) / STORY_ITEMS_PER_LINE,
+);
+const STORY_ITEM_ASPECT_RATIO = 9 / 16;
+const STORY_AVATAR_WIDTH = Math.round((STORY_ITEM_WIDTH - 2 * 12) / 2);
 
 const styles = StyleSheet.create({
   container: {
@@ -95,6 +116,91 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     padding: 4,
   },
+  storyBlock: {
+    backgroundColor: 'white',
+    marginVertical: 8,
+  },
+  storyBlockContent: {
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    flexDirection: 'row',
+  },
+  storyItem: {
+    width: STORY_ITEM_WIDTH,
+    aspectRatio: STORY_ITEM_ASPECT_RATIO,
+    borderRadius: 16,
+    margin: 4,
+    backgroundColor: '#bdbdbd',
+    padding: 8,
+    justifyContent: 'space-between',
+  },
+  storyCreateItem: {
+    width: STORY_ITEM_WIDTH,
+    aspectRatio: STORY_ITEM_ASPECT_RATIO,
+    borderRadius: 16,
+    margin: 4,
+    backgroundColor: '#bdbdbd',
+  },
+  storyImgBg: {
+    width: STORY_ITEM_WIDTH,
+    aspectRatio: STORY_ITEM_ASPECT_RATIO,
+    borderRadius: 16,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: '#bdbdbd',
+    resizeMode: 'cover',
+  },
+  storyOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    borderRadius: 16,
+  },
+  storyAvatar: {
+    width: STORY_AVATAR_WIDTH,
+    height: STORY_AVATAR_WIDTH,
+    borderRadius: STORY_AVATAR_WIDTH / 2,
+    borderWidth: 12 * StyleSheet.hairlineWidth,
+    borderColor: '#006AFF',
+  },
+  storyCreateTopAvatar: {
+    flex: 2,
+    width: STORY_ITEM_WIDTH - StyleSheet.hairlineWidth,
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    borderColor: '#bdbdbd',
+    borderWidth: StyleSheet.hairlineWidth,
+  },
+  storyCreateContent: {
+    flex: 1,
+    backgroundColor: '#fafafa',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    paddingBottom: 8,
+    borderColor: '#bdbdbd',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderBottomLeftRadius: 16,
+    borderBottomRightRadius: 16,
+  },
+  storyTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: 'white',
+  },
+  storyCreateTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  storyCreateButton: {
+    backgroundColor: '#fafafa',
+    position: 'absolute',
+    borderRadius: 22,
+    left: (STORY_ITEM_WIDTH - 46) / 2,
+    top: ((STORY_ITEM_WIDTH / STORY_ITEM_ASPECT_RATIO - 46) * 2) / 3,
+  },
+  storyAddIcon: {
+    fontSize: 44,
+    color: '#006AFF',
+  },
 });
 
 export const HomeFeed = () => {
@@ -153,6 +259,53 @@ export const HomeFeed = () => {
               />
               <Text style={styles.actionTitle}>{'Room'}</Text>
             </View>
+          </View>
+        </View>
+        <View style={styles.storyBlock}>
+          <View style={styles.storyBlockContent}>
+            {/* Create item */}
+            <View style={styles.storyCreateItem}>
+              <View style={styles.storyOverlay} />
+              <Image
+                style={styles.storyCreateTopAvatar}
+                source={require('../assets/images/avatar.jpg')}
+              />
+              <View style={styles.storyCreateContent}>
+                <Text
+                  style={styles.storyCreateTitle}
+                  numberOfLines={2}
+                  ellipsizeMode={'tail'}>{`Create\n\rStory`}</Text>
+              </View>
+              <View style={styles.storyCreateButton}>
+                <MaterialIcons
+                  name={'add-circle'}
+                  style={styles.storyAddIcon}
+                  // size={46}
+                />
+              </View>
+            </View>
+            {/* Item */}
+            {[0, 1, 2, 3].map((_, index) => (
+              <ImageBackground
+                key={`story-${index}`}
+                source={{
+                  uri: `https://picsum.photos/seed/story-${index}/576/1024`,
+                }}
+                imageStyle={styles.storyImgBg}
+                style={styles.storyItem}>
+                <View style={styles.storyOverlay} />
+                <Image
+                  style={styles.storyAvatar}
+                  source={{
+                    uri: `https://i.pravatar.cc/360?u=${index}@youth.com`,
+                  }}
+                />
+                <Text
+                  style={styles.storyTitle}
+                  numberOfLines={1}
+                  ellipsizeMode={'tail'}>{`User ${index}`}</Text>
+              </ImageBackground>
+            ))}
           </View>
         </View>
       </View>
