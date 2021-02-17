@@ -11,7 +11,7 @@
 import React from 'react';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
-import {View, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {RootNavigator} from './navigation/RootNavigator';
 
 const App = () => {
@@ -21,12 +21,5 @@ const App = () => {
     </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'blue',
-  },
-});
 
 export default App;
