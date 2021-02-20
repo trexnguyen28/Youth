@@ -8,16 +8,16 @@ const BaseFontSize = 16;
 
 const FontSize = {
   normal: scaleFontSize(BaseFontSize),
+  status: scaleFontSize(BaseFontSize - 1),
   small: scaleFontSize(BaseFontSize - 2),
+  xsmall: scaleFontSize(BaseFontSize - 4),
   large: scaleFontSize(BaseFontSize + 2),
 };
 
+//TODO Find solutions here
 const FontWeight = {
-  normal: 'normal',
-  bold: '600',
+  normal: 'normal' as 'normal',
+  bold: '600' as '600',
 };
 
-export default {
-  FontSize,
-  FontWeight,
-};
+export {FontSize, FontWeight};

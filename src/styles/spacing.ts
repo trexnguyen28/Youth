@@ -1,6 +1,10 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 
 const BaseSpacing = 8;
+
+const WindowWidth = Dimensions.get('window').width;
+
+const WindowHeight = Dimensions.get('window').height;
 
 const BaseBorderWidth = 2 * StyleSheet.hairlineWidth;
 
@@ -18,7 +22,9 @@ const BorderWidth = {
   large: BaseBorderWidth * 2,
 };
 
-export default {
+export {
+  WindowWidth,
+  WindowHeight,
   BaseSpacing,
   BaseBorderWidth,
   Padding,

@@ -1,4 +1,4 @@
-//TODO: Add more color into here
+// TODO: Add more color into here
 
 const Color = {
   //
@@ -13,6 +13,7 @@ const Color = {
   green: '#81c784',
   purple: '#9575cd',
   grey: '#e0e0e0',
+  grey_darker: '#bdbdbd',
   white: '#FFFFFF',
   white_variant: '#FAFAFA',
 };
@@ -28,22 +29,17 @@ const BgColor = {
 
 const TextColor = {
   primary: Color.primary,
-  normal: Color.white,
-  light: '',
-  dark: '',
+  normal: 'rgba(17,17,17, 0.88)',
+  light: '#7A7A7A',
+  dark: '#303030',
   white: Color.white,
   black: Color.black,
 };
 
 const BorderColor = {
-  normal: '#bdbdbd',
+  normal: Color.grey_darker,
   light: '',
   dark: '',
 };
 
-export default {
-  Color,
-  BgColor,
-  TextColor,
-  BorderColor,
-};
+export {Color, BgColor, TextColor, BorderColor};
