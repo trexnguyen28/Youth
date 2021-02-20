@@ -1,10 +1,8 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {FeedNavigator} from './FeedNavigator';
-import {MenuNaivgator} from './MenuNavigator';
+import {FeedNavigator} from './modules/feed/navigator';
+import {MenuNaivgator} from './modules/menu/navigator';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-Ionicons.loadFont();
 
 const IconOutlineMap: Record<string, string> = {
   Home: 'home-outline',

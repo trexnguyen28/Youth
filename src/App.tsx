@@ -9,12 +9,12 @@
  */
 
 import React from 'react';
-import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
-import {StyleSheet} from 'react-native';
-import {RootNavigator} from './navigation/RootNavigator';
+import {RootNavigator} from './RootNavigator';
 
-const App = () => {
+import './setup';
+
+const App: React.ReactNode = () => {
   return (
     <NavigationContainer>
       <RootNavigator />
