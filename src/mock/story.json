@@ -1,0 +1,68 @@
+[
+  {
+    "id": "1",
+    "title": "User 1",
+    "imgUri": "https://picsum.photos/seed/story-1/576/1024",
+    "avtUri": "https://i.pravatar.cc/360?u=1@youth.com"
+  },
+  {
+    "id": "2",
+    "title": "User 2",
+    "imgUri": "https://picsum.photos/seed/story-2/576/1024",
+    "avtUri": "https://i.pravatar.cc/360?u=2@youth.com"
+  },
+  {
+    "id": "3",
+    "title": "User 3",
+    "imgUri": "https://picsum.photos/seed/story-3/576/1024",
+    "avtUri": "https://i.pravatar.cc/360?u=3@youth.com"
+  },
+  {
+    "id": "4",
+    "title": "User 4",
+    "imgUri": "https://picsum.photos/seed/story-4/576/1024",
+    "avtUri": "https://i.pravatar.cc/360?u=4@youth.com"
+  },
+  {
+    "id": "5",
+    "title": "User 5",
+    "imgUri": "https://picsum.photos/seed/story-5/576/1024",
+    "avtUri": "https://i.pravatar.cc/360?u=5@youth.com"
+  },
+  {
+    "id": "6",
+    "title": "User 6",
+    "imgUri": "https://picsum.photos/seed/story-6/576/1024",
+    "avtUri": "https://i.pravatar.cc/360?u=6@youth.com"
+  },
+  {
+    "id": "7",
+    "title": "User 7",
+    "imgUri": "https://picsum.photos/seed/story-7/576/1024",
+    "avtUri": "https://i.pravatar.cc/360?u=7@youth.com"
+  },
+  {
+    "id": "8",
+    "title": "User 8",
+    "imgUri": "https://picsum.photos/seed/story-8/576/1024",
+    "avtUri": "https://i.pravatar.cc/360?u=8@youth.com"
+  },
+  {
+    "id": "9",
+    "title": "User 9",
+    "imgUri": "https://picsum.photos/seed/story-9/576/1024",
+    "avtUri": "https://i.pravatar.cc/360?u=9@youth.com"
+  },
+  {
+    "id": "10",
+    "title": "User 10",
+    "imgUri": "https://picsum.photos/seed/story-10/576/1024",
+    "avtUri": "https://i.pravatar.cc/360?u=10@youth.com"
+  },
+  {
+    "id": "11",
+    "title": "User 11",
+    "imgUri": "https://picsum.photos/seed/story-11/576/1024",
+    "avtUri": "https://i.pravatar.cc/360?u=11@youth.com"
+  }
+]

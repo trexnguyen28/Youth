@@ -1,0 +1,51 @@
+[
+  {
+    "id": "1",
+    "userName": "David Wayne",
+    "status": "This application gonna look cool",
+    "creationDate": "2021-02-20T14:54:55+0000",
+    "avtUri": "https://i.pravatar.cc/360?u=1@youth.com",
+    "photos": ["https://picsum.photos/seed/mobile/576/576"]
+  },
+  {
+    "id": "2",
+    "userName": "Paul Walker",
+    "status": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "creationDate": "2021-02-20T14:54:55+0000",
+    "avtUri": "https://i.pravatar.cc/360?u=2@youth.com"
+  },
+  {
+    "id": "3",
+    "userName": "Tina Ovalsky",
+    "creationDate": "2021-02-20T14:54:55+0000",
+    "avtUri": "https://i.pravatar.cc/360?u=3@youth.com",
+    "photos": [
+      "https://picsum.photos/seed/category1/1024/576",
+      "https://picsum.photos/seed/category2/1024/576",
+      "https://picsum.photos/seed/category3/1024/576",
+      "https://picsum.photos/seed/category4/1024/576"
+    ]
+  },
+  {
+    "id": "4",
+    "userName": "Tony Hook",
+    "status": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable",
+    "creationDate": "2021-02-20T14:54:55+0000",
+    "avtUri": "https://i.pravatar.cc/360?u=4@youth.com",
+    "photos": [
+      "https://picsum.photos/seed/anime2/576/576",
+      "https://picsum.photos/seed/anime3/576/576",
+      "https://picsum.photos/seed/anime4/1024/576"
+    ]
+  },
+  {
+    "id": "5",
+    "userName": "Luna Shayne",
+    "creationDate": "2021-02-20T14:54:55+0000",
+    "avtUri": "https://i.pravatar.cc/360?u=5@youth.com",
+    "photos": [
+      "https://picsum.photos/seed/anime2/576/576",
+      "https://picsum.photos/seed/anime3/576/576"
+    ]
+  }
+]
