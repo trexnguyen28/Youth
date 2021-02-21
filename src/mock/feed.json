@@ -5,7 +5,8 @@
     "status": "This application gonna look cool",
     "creationDate": "2021-02-20T14:54:55+0000",
     "avtUri": "https://i.pravatar.cc/360?u=1@youth.com",
-    "photos": ["https://picsum.photos/seed/mobile/576/576"]
+    "photos": ["https://picsum.photos/seed/mobile/576/576"],
+    "privacy": "public"
   },
   {
     "id": "2",

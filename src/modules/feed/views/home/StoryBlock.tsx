@@ -1,11 +1,12 @@
 import React from 'react';
 import {FlatList, StyleSheet} from 'react-native';
-import StoryData from '../../../../mock/story.json';
 import Story from '../../components/Story';
 import StoryCreation from '../../components/StoryCreation';
 import {StoryDataType} from '../../types';
 import {BgColor} from '../../../../styles/color';
 import {Padding} from '../../../../styles/spacing';
+
+const StoryData: Array<StoryDataType> = require('../../../../mock/story.json');
 
 interface Props {}
 

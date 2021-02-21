@@ -5,11 +5,18 @@ export interface StoryDataType {
   avtUri?: string;
 }
 
+export enum FeedPrivacy {
+  'public',
+  'friend',
+  'custom',
+}
+
 export interface FeedDataType {
   id: string | number;
   userName: string;
   avtUri: string;
-  creationDate: string | Date;
   status?: string;
+  privacy?: FeedPrivacy;
+  creationDate: string | Date;
   photos?: Array<string>;
 }

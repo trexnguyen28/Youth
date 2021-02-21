@@ -16,6 +16,7 @@ export const HeaderStyles = StyleSheet.create({
     backgroundColor: BgColor.white,
     justifyContent: 'space-between',
     paddingHorizontal: Padding.base,
+    paddingBottom: Padding.base,
   },
   rightContent: {
     flexDirection: 'row',
@@ -39,7 +40,7 @@ export const HeaderStyles = StyleSheet.create({
 
 export const ActionBlockStyles = StyleSheet.create({
   container: {
-    paddingVertical: Padding.base,
+    paddingBottom: Padding.base,
     backgroundColor: BgColor.white,
   },
   content: {

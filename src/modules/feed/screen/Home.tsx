@@ -6,8 +6,9 @@ import ActionBlock from '../views/home/ActionBlock';
 import StoryBlock from '../views/home/StoryBlock';
 import {FeedDataType} from '../types';
 import {BgColor} from '../../../styles/color';
-import FeedMockData from '../../../mock/feed.json';
 import Feed from '../components/Feed';
+
+const FeedMockData: Array<FeedDataType> = require('../../../mock/feed.json');
 
 const styles = StyleSheet.create({
   container: {

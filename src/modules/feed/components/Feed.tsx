@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: FontSize.xsmall,
     color: TextColor.light,
+    alignItems: 'baseline',
   },
   subTitleIcon: {
     fontSize: FontSize.small,
