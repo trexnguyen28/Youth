@@ -14,6 +14,7 @@ import moment from 'moment';
 import Button from '../../../components/Button';
 import Card from '../../../components/Card';
 import PrivacyIcon from './PrivacyIcon';
+import FeedPhotos from './FeedPhotos';
 
 interface Props extends ViewProps, FeedDataType {}
 
@@ -90,6 +91,7 @@ const Feed = (props: Props) => {
     avtUri,
     creationDate,
     status,
+    photos,
     privacy = FeedPrivacy.public,
   } = props;
 
@@ -114,6 +116,7 @@ const Feed = (props: Props) => {
           {status}
         </Text>
       ) : null}
+      <FeedPhotos photos={photos} />
       <View style={styles.footer}>
         <Button
           title={'Like'}

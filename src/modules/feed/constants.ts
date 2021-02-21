@@ -23,3 +23,5 @@ export const StoryAvatarSize = Math.round(
 export const FeedAvatarSize = 54;
 
 export const FeedMenuIconSize = 22;
+
+export const FeedPhotoAspeectRatio = 16 / 9;

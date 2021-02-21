@@ -3,7 +3,7 @@
 const Color = {
   //
   primary: '#006AFF',
-  secondary: '',
+  secondary: '#4E9AE0',
   error: '#e53935',
   warning: '',
   supplement: '#e3edf7',
