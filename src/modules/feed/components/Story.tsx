@@ -4,14 +4,19 @@ import Avatar from '../../../components/Avatar';
 import {Padding, BorderWidth} from '../../../styles/spacing';
 import {BgColor, Color, BorderColor} from '../../../styles/color';
 import {FontSize, FontWeight} from '../../../styles/typography';
-import {StoryWidth, StoryAspectRatio, StoryAvatarSize} from '../constants';
+import {
+  StoryWidth,
+  StoryAspectRatio,
+  StoryAvatarSize,
+  StoryDefaultBorder,
+} from '../constants';
 import {StoryDataType} from '../types';
 
 interface Props extends ViewProps, StoryDataType {}
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 16,
+    borderRadius: StoryDefaultBorder,
     width: StoryWidth,
     margin: Padding.small,
     padding: Padding.base,
@@ -20,7 +25,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   image: {
-    borderRadius: 16,
+    borderRadius: StoryDefaultBorder,
     width: StoryWidth,
     resizeMode: 'cover',
     borderWidth: BorderWidth.base,
@@ -30,7 +35,7 @@ const styles = StyleSheet.create({
   overlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
-    borderRadius: 16,
+    borderRadius: StoryDefaultBorder,
   },
   avatar: {
     borderWidth: 6 * BorderWidth.base,

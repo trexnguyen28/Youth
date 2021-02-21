@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
   photo1: {
     width: WindowWidth,
     aspectRatio: FeedPhotoAspeectRatio,
-    borderWidth: BorderWidth.small,
+    borderTopWidth: BorderWidth.small,
+    borderBottomWidth: BorderWidth.small,
     borderColor: BorderColor.normal,
   },
   row: {

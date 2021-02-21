@@ -18,7 +18,7 @@ const Padding = {
 
 const BorderWidth = {
   base: 2 * StyleSheet.hairlineWidth,
-  small: Math.round(BaseBorderWidth / 2),
+  small: StyleSheet.hairlineWidth,
   large: BaseBorderWidth * 2,
 };
 

@@ -20,6 +20,16 @@ export const StoryAvatarSize = Math.round(
   (StoryWidth - Padding.horizontal) / 2,
 );
 
+export const StoryMinHeight = 60;
+
+export const StoryMinWidth = 60;
+
+export const StoryAvatarMinSize = 40;
+
+export const StoryDefaultBorder = 16;
+
+export const StoryAnimatedBorderRadius = 30;
+
 export const FeedAvatarSize = 54;
 
 export const FeedMenuIconSize = 22;
