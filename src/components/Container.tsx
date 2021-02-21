@@ -14,10 +14,14 @@ const styles = StyleSheet.create({
 });
 
 const Container = (props: Props) => {
-  const {children, style} = props;
+  const {children, style, ...rest} = props;
   const containerStyle = StyleSheet.flatten([styles.container, style]);
 
-  return <SafeAreaView style={containerStyle}>{children}</SafeAreaView>;
+  return (
+    <SafeAreaView {...rest} style={containerStyle}>
+      {children}
+    </SafeAreaView>
+  );
 };
 
 export default Container;

@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, Text, ViewProps, StyleSheet} from 'react-native';
 
-import {FeedDataType} from '../types';
+import {FeedDataType, FeedPrivacy} from '../types';
 import {Padding, BorderWidth} from '../../../styles/spacing';
-import {BgColor, TextColor, BorderColor} from '../../../styles/color';
+import {TextColor, BorderColor} from '../../../styles/color';
 import {FontSize, FontWeight} from '../../../styles/typography';
 import Avatar from '../../../components/Avatar';
 import {ActionIconSize, FeedAvatarSize, FeedMenuIconSize} from '../constants';
@@ -12,18 +12,14 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import moment from 'moment';
 import Button from '../../../components/Button';
+import Card from '../../../components/Card';
+import PrivacyIcon from './PrivacyIcon';
 
 interface Props extends ViewProps, FeedDataType {}
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    flexDirection: 'column',
     marginBottom: Padding.base,
-    justifyContent: 'flex-start',
-    backgroundColor: BgColor.white,
-    borderTopWidth: BorderWidth.base,
-    borderTopColor: BorderColor.normal,
   },
   header: {
     flexDirection: 'row',
@@ -48,10 +44,6 @@ const styles = StyleSheet.create({
     fontSize: FontSize.xsmall,
     color: TextColor.light,
     alignItems: 'baseline',
-  },
-  subTitleIcon: {
-    fontSize: FontSize.small,
-    color: TextColor.light,
   },
   menu: {
     fontSize: FeedMenuIconSize,
@@ -93,10 +85,16 @@ const styles = StyleSheet.create({
 });
 
 const Feed = (props: Props) => {
-  const {userName, avtUri, creationDate, status} = props;
+  const {
+    userName,
+    avtUri,
+    creationDate,
+    status,
+    privacy = FeedPrivacy.public,
+  } = props;
 
   return (
-    <View style={styles.container}>
+    <Card style={styles.container}>
       <View style={styles.header}>
         <Avatar source={{uri: avtUri}} size={FeedAvatarSize} />
         <View style={styles.headerContent}>
@@ -106,7 +104,7 @@ const Feed = (props: Props) => {
           <Text style={styles.subTitle} numberOfLines={1}>
             {moment(creationDate).fromNow()}
             {' \u00B7 '}
-            <Ionicons name={'earth'} style={styles.subTitleIcon} />
+            <PrivacyIcon privacy={privacy} />
           </Text>
         </View>
         <Ionicons name={'ellipsis-horizontal'} style={styles.menu} />
@@ -140,7 +138,7 @@ const Feed = (props: Props) => {
           style={styles.actionBox}
         />
       </View>
-    </View>
+    </Card>
   );
 };
 

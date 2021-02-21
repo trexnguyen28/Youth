@@ -6,9 +6,9 @@ export interface StoryDataType {
 }
 
 export enum FeedPrivacy {
-  'public',
-  'friend',
-  'custom',
+  'public' = 'public',
+  'friend' = 'friend',
+  'custom' = 'custom',
 }
 
 export interface FeedDataType {

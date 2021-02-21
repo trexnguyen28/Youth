@@ -6,7 +6,7 @@ const Color = {
   secondary: '',
   error: '#e53935',
   warning: '',
-  supplement: '#afc2cb',
+  supplement: '#e3edf7',
   //
   black: '#000000',
   red: '#e53935',

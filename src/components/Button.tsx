@@ -19,11 +19,11 @@ const Button = (props: ButtonProps) => {
     titleStyle = {},
     children = null,
     IconSource = Ionicons,
-    ...restProps
+    ...rest
   } = props;
 
   return (
-    <Pressable {...restProps}>
+    <Pressable {...rest}>
       {icon ? <IconSource name={icon} style={iconStyle} /> : null}
       {title ? <Text style={titleStyle}>{title}</Text> : null}
       {children}

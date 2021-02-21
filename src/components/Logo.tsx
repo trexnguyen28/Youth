@@ -21,11 +21,11 @@ const styles = StyleSheet.create({
 });
 
 const Logo = (props: Props) => {
-  const {style = {}, source = LogoSource, ...restProps} = props;
+  const {style = {}, source = LogoSource, ...rest} = props;
 
   const logoStyle = StyleSheet.flatten([styles.logo, style]);
 
-  return <Image {...restProps} source={source} style={logoStyle} />;
+  return <Image {...rest} source={source} style={logoStyle} />;
 };
 
 export default Logo;
