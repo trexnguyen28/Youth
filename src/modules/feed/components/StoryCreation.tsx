@@ -1,25 +1,17 @@
 import React from 'react';
 import {StyleSheet, ViewStyle, ImageStyle, TextStyle} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {
-  StoryWidth,
-  StoryAspectRatio,
-  StoryAvatarSize,
-  HeaderButtonSize,
-  HeaderIconSize,
-} from '../constants';
+import {HeaderButtonSize, HeaderIconSize} from '../constants';
 import {Padding, BorderWidth} from '../../../styles/spacing';
 import {BgColor, Color, BorderColor, TextColor} from '../../../styles/color';
-import {FontSize} from '../../../styles/typography';
-import Button from '../../../components/Button';
 import Animated from 'react-native-reanimated';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 interface Props {
   containerStyle: ViewStyle;
   imageStyle: ImageStyle;
   titleStyle: TextStyle;
   iconStyle: TextStyle;
+  isAnchor: boolean;
 }
 
 const styles = StyleSheet.create({
@@ -62,12 +54,12 @@ const AvatarSource = require('../../../assets/images/avatar.jpg');
 
 //TODO Check pointerEvents when already anchor
 const StoryCreationItem = (props: Props) => {
-  const {containerStyle, titleStyle, iconStyle, imageStyle} = props;
+  const {containerStyle, titleStyle, iconStyle, imageStyle, isAnchor} = props;
 
   return (
     <Animated.View
       style={[styles.container, containerStyle]}
-      pointerEvents={'none'}>
+      pointerEvents={isAnchor ? 'auto' : 'none'}>
       <Animated.Image style={imageStyle} source={AvatarSource} />
       <Animated.View style={styles.content}>
         <Animated.Text

@@ -6,6 +6,7 @@ import {
   NativeScrollEvent,
   View,
   TextStyle,
+  ListRenderItem,
 } from 'react-native';
 import Story from '../../components/Story';
 import StoryCreation from '../../components/StoryCreation';
@@ -19,6 +20,7 @@ import Animated, {
   useSharedValue,
   interpolate,
   Extrapolate,
+  useDerivedValue,
 } from 'react-native-reanimated';
 import {
   StoryWidth,
@@ -49,15 +51,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: Padding.horizontal,
   },
   headerAlt: {
-    backgroundColor: 'transparent',
     width: StoryWidth,
+    height: StoryWidth / StoryAspectRatio,
     margin: Padding.small,
   },
 });
 
 const keyExtractor = (item: StoryDataType) => `${item.id}`;
 
-const renderItem = ({item}: {item: StoryDataType}) => {
+const renderItem: ListRenderItem<StoryDataType> = ({item}) => {
   return <Story {...item} />;
 };
 
@@ -67,6 +69,7 @@ const ListHeaderComponent = () => <View style={styles.headerAlt} />;
 //TODO Check TS here
 const StoryBlock = (props: Props) => {
   const xOffset = useSharedValue(0);
+  const isAnchor = useDerivedValue<boolean>(() => xOffset.value >= StoryWidth);
   const scrollHandler = useAnimatedScrollHandler((e: NativeScrollEvent) => {
     xOffset.value = e.contentOffset.x;
   });
@@ -99,8 +102,14 @@ const StoryBlock = (props: Props) => {
 
     const left = interpolate(
       xOffset.value,
+      [-0.01, 0, StoryWidth],
+      [Math.abs(xOffset.value) + Padding.vertical, Padding.vertical, 0],
+      Extrapolate.CLAMP,
+    );
+    const margin = interpolate(
+      xOffset.value,
       [0, StoryWidth],
-      [Padding.vertical, 0],
+      [Padding.small, 0],
       Extrapolate.CLAMP,
     );
 
@@ -124,9 +133,8 @@ const StoryBlock = (props: Props) => {
       borderBottomLeftRadius: borderLeftRadius,
       borderTopRightRadius: borderRightRadius,
       borderBottomRightRadius: borderRightRadius,
-      margin: xOffset.value <= 0 ? Padding.small : 0,
-      left:
-        xOffset.value < 0 ? Math.abs(xOffset.value) + Padding.vertical : left,
+      margin,
+      left,
       top,
     };
   });
@@ -147,7 +155,14 @@ const StoryBlock = (props: Props) => {
       ],
       Extrapolate.CLAMP,
     );
-    const borderRadius = interpolate(
+
+    const borderTopRadius = interpolate(
+      xOffset.value,
+      [0, StoryWidth],
+      [StoryDefaultBorder, StoryAvatarMinSize / 2],
+      Extrapolate.CLAMP,
+    );
+    const borderBottomRadius = interpolate(
       xOffset.value,
       [0, StoryWidth],
       [0, StoryAvatarMinSize / 2],
@@ -170,12 +185,10 @@ const StoryBlock = (props: Props) => {
     return {
       width: width,
       height: height,
-      borderTopLeftRadius:
-        xOffset.value <= 0 ? StoryDefaultBorder : borderRadius,
-      borderTopRightRadius:
-        xOffset.value <= 0 ? StoryDefaultBorder : borderRadius,
-      borderBottomRightRadius: borderRadius,
-      borderBottomLeftRadius: borderRadius,
+      borderTopLeftRadius: borderTopRadius,
+      borderTopRightRadius: borderTopRadius,
+      borderBottomRightRadius: borderBottomRadius,
+      borderBottomLeftRadius: borderBottomRadius,
       transform: [{translateX: tx}, {translateY: ty}],
     };
   });
@@ -242,6 +255,7 @@ const StoryBlock = (props: Props) => {
         imageStyle={creationImageStyle}
         titleStyle={creationTitleStyle}
         iconStyle={creationIconStyle}
+        isAnchor={isAnchor.value}
       />
     </View>
   );
