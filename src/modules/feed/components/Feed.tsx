@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useRef, useCallback, useMemo} from 'react';
 import {View, Text, ViewProps, StyleSheet} from 'react-native';
 
 import {FeedDataType, FeedPrivacy} from '../types';
-import {Padding, BorderWidth} from '../../../styles/spacing';
+import {Padding, BorderWidth, WindowHeight} from '../../../styles/spacing';
 import {TextColor, BorderColor} from '../../../styles/color';
 import {FontSize, FontWeight} from '../../../styles/typography';
 import Avatar from '../../../components/Avatar';
@@ -15,6 +15,11 @@ import Button from '../../../components/Button';
 import Card from '../../../components/Card';
 import PrivacyIcon from './PrivacyIcon';
 import FeedPhotos from './FeedPhotos';
+import {
+  BottomSheetModal,
+  BottomSheetBackdropProps,
+  BottomSheetBackdrop,
+} from '@gorhom/bottom-sheet';
 
 interface Props extends ViewProps, FeedDataType {}
 
@@ -83,7 +88,32 @@ const styles = StyleSheet.create({
     fontSize: FontSize.small,
     paddingHorizontal: Padding.small / 2,
   },
+  bottomSheetContent: {
+    flex: 1,
+    alignItems: 'center',
+    height: 500,
+  },
 });
+
+const backdropComponent = ({
+  animatedIndex,
+  animatedPosition,
+}: BottomSheetBackdropProps) => {
+  const containerStyle = {
+    height: WindowHeight,
+    backgroundColor: 'red',
+  };
+
+  return (
+    <BottomSheetBackdrop
+      animatedIndex={animatedIndex}
+      animatedPosition={animatedPosition}
+      style={{height: 50}}
+      closeOnPress
+      appearsOnIndex={1}
+    />
+  );
+};
 
 const Feed = (props: Props) => {
   const {
@@ -95,53 +125,79 @@ const Feed = (props: Props) => {
     privacy = FeedPrivacy.public,
   } = props;
 
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+
+  const snapPoints = useMemo(() => ['50%', '25%'], []);
+
+  const handleSheetChanges = useCallback((index: number) => {
+    console.log('handleSheetChanges', index);
+  }, []);
+
+  const handleSharePress = useCallback(() => {
+    bottomSheetModalRef.current?.present();
+  }, []);
+
   return (
-    <Card style={styles.container}>
-      <View style={styles.header}>
-        <Avatar source={{uri: avtUri}} size={FeedAvatarSize} />
-        <View style={styles.headerContent}>
-          <Text style={styles.title} numberOfLines={1}>
-            {userName}
-          </Text>
-          <Text style={styles.subTitle} numberOfLines={1}>
-            {moment(creationDate).fromNow()}
-            {' \u00B7 '}
-            <PrivacyIcon privacy={privacy} />
-          </Text>
+    <>
+      <Card style={styles.container}>
+        <View style={styles.header}>
+          <Avatar source={{uri: avtUri}} size={FeedAvatarSize} />
+          <View style={styles.headerContent}>
+            <Text style={styles.title} numberOfLines={1}>
+              {userName}
+            </Text>
+            <Text style={styles.subTitle} numberOfLines={1}>
+              {moment(creationDate).fromNow()}
+              {' \u00B7 '}
+              <PrivacyIcon privacy={privacy} />
+            </Text>
+          </View>
+          <Ionicons name={'ellipsis-horizontal'} style={styles.menu} />
         </View>
-        <Ionicons name={'ellipsis-horizontal'} style={styles.menu} />
-      </View>
-      {status ? (
-        <Text style={styles.status} numberOfLines={5}>
-          {status}
-        </Text>
-      ) : null}
-      <FeedPhotos photos={photos} />
-      <View style={styles.footer}>
-        <Button
-          title={'Like'}
-          icon={'thumb-up-off-alt'}
-          IconSource={MaterialIcons}
-          iconStyle={styles.actionIcon}
-          titleStyle={styles.actionTitle}
-          style={styles.actionBox}
-        />
-        <Button
-          title={'Comment'}
-          icon={'chatbox-outline'}
-          iconStyle={styles.actionIcon}
-          titleStyle={styles.actionTitle}
-          style={styles.actionBox}
-        />
-        <Button
-          title={'Share'}
-          icon={'arrow-redo-outline'}
-          iconStyle={styles.actionIcon}
-          titleStyle={styles.actionTitle}
-          style={styles.actionBox}
-        />
-      </View>
-    </Card>
+        {status ? (
+          <Text style={styles.status} numberOfLines={5}>
+            {status}
+          </Text>
+        ) : null}
+        <FeedPhotos photos={photos} />
+        <View style={styles.footer}>
+          <Button
+            title={'Like'}
+            icon={'thumb-up-off-alt'}
+            IconSource={MaterialIcons}
+            iconStyle={styles.actionIcon}
+            titleStyle={styles.actionTitle}
+            style={styles.actionBox}
+          />
+          <Button
+            title={'Comment'}
+            icon={'chatbox-outline'}
+            iconStyle={styles.actionIcon}
+            titleStyle={styles.actionTitle}
+            style={styles.actionBox}
+          />
+          <Button
+            title={'Share'}
+            icon={'arrow-redo-outline'}
+            iconStyle={styles.actionIcon}
+            titleStyle={styles.actionTitle}
+            style={styles.actionBox}
+            onPress={handleSharePress}
+          />
+        </View>
+      </Card>
+      <BottomSheetModal
+        index={1}
+        dismissOnPanDown
+        snapPoints={snapPoints}
+        ref={bottomSheetModalRef}
+        backdropComponent={BottomSheetBackdrop}
+        onChange={handleSheetChanges}>
+        <View style={styles.bottomSheetContent}>
+          <Text>Awesome 🎉</Text>
+        </View>
+      </BottomSheetModal>
+    </>
   );
 };
 

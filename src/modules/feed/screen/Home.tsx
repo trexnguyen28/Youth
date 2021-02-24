@@ -7,6 +7,7 @@ import StoryBlock from '../views/home/StoryBlock';
 import {FeedDataType} from '../types';
 import {BgColor} from '../../../styles/color';
 import Feed from '../components/Feed';
+import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 
 const FeedMockData: Array<FeedDataType> = require('../../../mock/feed.json');
 
@@ -40,17 +41,19 @@ const renderItem = ({item}: {item: FeedDataType}) => {
 
 export const HomeFeedScreen = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <Header />
-      <FlatList
-        data={FeedMockData}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-        style={styles.listContainer}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.content}
-        ListHeaderComponent={ListHeaderComponent}
-      />
-    </SafeAreaView>
+    <BottomSheetModalProvider>
+      <SafeAreaView style={styles.container}>
+        <Header />
+        <FlatList
+          data={FeedMockData}
+          renderItem={renderItem}
+          keyExtractor={keyExtractor}
+          style={styles.listContainer}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.content}
+          ListHeaderComponent={ListHeaderComponent}
+        />
+      </SafeAreaView>
+    </BottomSheetModalProvider>
   );
 };
