@@ -20,3 +20,9 @@ export interface FeedDataType {
   creationDate: string | Date;
   photos?: Array<string>;
 }
+
+export interface ShareOptionsType {
+  id: string | number;
+  icon: string;
+  title: string;
+}

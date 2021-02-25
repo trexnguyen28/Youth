@@ -15,11 +15,8 @@ import Button from '../../../components/Button';
 import Card from '../../../components/Card';
 import PrivacyIcon from './PrivacyIcon';
 import FeedPhotos from './FeedPhotos';
-import {
-  BottomSheetModal,
-  BottomSheetBackdropProps,
-  BottomSheetBackdrop,
-} from '@gorhom/bottom-sheet';
+import {BottomSheetModal, BottomSheetBackdrop} from '@gorhom/bottom-sheet';
+import ShareSheet from './ShareSheet';
 
 interface Props extends ViewProps, FeedDataType {}
 
@@ -95,25 +92,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const backdropComponent = ({
-  animatedIndex,
-  animatedPosition,
-}: BottomSheetBackdropProps) => {
-  const containerStyle = {
-    height: WindowHeight,
-    backgroundColor: 'red',
-  };
-
-  return (
-    <BottomSheetBackdrop
-      animatedIndex={animatedIndex}
-      animatedPosition={animatedPosition}
-      style={{height: 50}}
-      closeOnPress
-      appearsOnIndex={1}
-    />
-  );
-};
+const ShareBottomSheetSnapPoints = ['50%', '50%'];
+const ReactionBottomSheetShapPoints = ['40%', '80%'];
 
 const Feed = (props: Props) => {
   const {
@@ -126,8 +106,6 @@ const Feed = (props: Props) => {
   } = props;
 
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-
-  const snapPoints = useMemo(() => ['50%', '25%'], []);
 
   const handleSheetChanges = useCallback((index: number) => {
     console.log('handleSheetChanges', index);
@@ -189,13 +167,10 @@ const Feed = (props: Props) => {
       <BottomSheetModal
         index={1}
         dismissOnPanDown
-        snapPoints={snapPoints}
         ref={bottomSheetModalRef}
-        backdropComponent={BottomSheetBackdrop}
-        onChange={handleSheetChanges}>
-        <View style={styles.bottomSheetContent}>
-          <Text>Awesome 🎉</Text>
-        </View>
+        snapPoints={ShareBottomSheetSnapPoints}
+        backdropComponent={BottomSheetBackdrop}>
+        <ShareSheet {...props} />
       </BottomSheetModal>
     </>
   );

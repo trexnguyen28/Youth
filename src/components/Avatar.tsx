@@ -9,7 +9,7 @@ import {BorderWidth} from '../styles/spacing';
 import {BorderColor} from '../styles/color';
 
 interface Props {
-  size: number;
+  size?: number;
   imgStyle?: ImageStyle;
   source?: ImageSourcePropType;
   resizeMode?: ImageResizeMode;

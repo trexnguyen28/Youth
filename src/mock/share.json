@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1",
+    "icon": "add-circle-outline",
+    "title": "Share to Your Story"
+  },
+  {
+    "id": "2",
+    "icon": "chatbubbles-outline",
+    "title": "Send in Messenger"
+  },
+  {
+    "id": "3",
+    "icon": "people-outline",
+    "title": "Share to a Group"
+  },
+  {
+    "id": "4",
+    "icon": "copy-outline",
+    "title": "Copy link"
+  },
+  {
+    "id": "5",
+    "title": "More Options...",
+    "icon": "ellipsis-horizontal-circle-outline"
+  }
+]

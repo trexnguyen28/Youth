@@ -18,6 +18,7 @@ const FontSize = {
 const FontWeight = {
   normal: 'normal' as 'normal',
   bold: '600' as '600',
+  semibold: '500' as '500',
 };
 
 export {FontSize, FontWeight};
