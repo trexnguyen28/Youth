@@ -6,6 +6,7 @@ import {
   StyleSheet,
   LayoutAnimation,
   Keyboard,
+  SafeAreaView,
 } from 'react-native';
 import {FeedDataType, ShareOptionsType} from '../types';
 import {useKeyboard} from '@react-native-community/hooks';
@@ -14,13 +15,16 @@ import Avatar from '../../../components/Avatar';
 import {FontSize, FontWeight} from '../../../styles/typography';
 import {TextColor, BorderColor, Color} from '../../../styles/color';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {TextInput} from 'react-native-gesture-handler';
 import Button from '../../../components/Button';
 
 const ShareOptionData = require('../../../mock/share.json');
+const ShareMoreOptionData = require('../../../mock/shareMoreOptions.json');
+import {useBottomSheet} from '@gorhom/bottom-sheet';
 
-interface Props extends ViewProps, FeedDataType {}
+interface Props extends ViewProps, FeedDataType {
+  showMore?: boolean;
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -31,12 +35,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: Padding.horizontal,
     paddingBottom: Padding.vertical,
-    alignItems: 'center',
   },
   backIcon: {
     fontSize: 28,
     color: TextColor.light,
     paddingRight: Padding.base,
+    paddingTop: 30 / 2,
   },
   headerContent: {
     flexDirection: 'row',
@@ -112,8 +116,6 @@ const newFeedBadgeStyles = StyleSheet.create({
 
 const shareOptionsStyles = StyleSheet.create({
   container: {
-    flex: 1,
-    // paddingVertical: Padding.base * 2,
     paddingHorizontal: Padding.base * 2,
     borderTopWidth: BorderWidth.base,
     borderTopColor: BorderColor.normal,
@@ -138,7 +140,9 @@ const shareOptionsStyles = StyleSheet.create({
 const onKeyboardDismiss = () => Keyboard.dismiss();
 
 const ShareSheet = (props: Props) => {
+  const {showMore} = props;
   const {keyboardShown = false} = useKeyboard();
+  const {expand, snapTo} = useBottomSheet();
 
   useEffect(() => {
     LayoutAnimation.easeInEaseOut();
@@ -167,13 +171,13 @@ const ShareSheet = (props: Props) => {
           </View>
         </View>
         <View style={styles.headerBuffer} />
-        <MaterialIcons name={'fullscreen'} style={styles.fullscreen} />
       </View>
       <View style={styles.inputContent}>
         <TextInput
           placeholder={'Say something about this...'}
           placeholderTextColor={TextColor.light}
           style={styles.input}
+          onFocus={() => (showMore ? snapTo(1) : () => {})}
           onChangeText={() => {}}
         />
       </View>
@@ -184,16 +188,44 @@ const ShareSheet = (props: Props) => {
           style={styles.shareContent}
         />
       </View>
-      <View style={shareOptionsStyles.container}>
-        {ShareOptionData.map((options: ShareOptionsType, index: number) => (
+      <View
+        style={[
+          shareOptionsStyles.container,
+          showMore ? {flex: 1} : {height: '40%'},
+        ]}>
+        {ShareOptionData.map((option: ShareOptionsType, index: number) => (
           <Button
-            icon={options.icon}
-            title={options.title}
+            key={option.id}
+            icon={option.icon}
+            title={option.title}
             style={shareOptionsStyles.button}
             titleStyle={shareOptionsStyles.title}
             iconStyle={shareOptionsStyles.icon}
           />
         ))}
+        {showMore
+          ? ShareMoreOptionData.map(
+              (option: ShareOptionsType, index: number) => (
+                <Button
+                  key={option.id}
+                  icon={option.icon}
+                  title={option.title}
+                  style={shareOptionsStyles.button}
+                  titleStyle={shareOptionsStyles.title}
+                  iconStyle={shareOptionsStyles.icon}
+                />
+              ),
+            )
+          : null}
+        <Button
+          key={'toggle'}
+          icon={'ellipsis-horizontal-circle-outline'}
+          title={!showMore ? 'More Options...' : 'Less Options'}
+          style={shareOptionsStyles.button}
+          titleStyle={shareOptionsStyles.title}
+          iconStyle={shareOptionsStyles.icon}
+          onPress={() => (!showMore ? expand() : snapTo(1))}
+        />
       </View>
     </View>
   );

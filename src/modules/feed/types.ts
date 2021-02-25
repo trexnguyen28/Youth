@@ -25,4 +25,5 @@ export interface ShareOptionsType {
   id: string | number;
   icon: string;
   title: string;
+  color?: string;
 }

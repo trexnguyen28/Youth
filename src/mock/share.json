@@ -18,10 +18,5 @@
     "id": "4",
     "icon": "copy-outline",
     "title": "Copy link"
-  },
-  {
-    "id": "5",
-    "title": "More Options...",
-    "icon": "ellipsis-horizontal-circle-outline"
   }
 ]

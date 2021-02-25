@@ -1,0 +1,29 @@
+[
+  {
+    "id": "more-option-1",
+    "icon": "logo-twitter",
+    "color": "#1DA1F2",
+    "title": "Share to Twitter"
+  },
+  {
+    "id": "more-option-2",
+    "icon": "logo-linkedin",
+    "color": "#2867B2",
+    "title": "Share to Linkedin"
+  },
+  {
+    "id": "more-option-3",
+    "icon": "logo-snapchat",
+    "title": "Share to Snapchat"
+  },
+  {
+    "id": "more-option-4",
+    "icon": "logo-whatsapp",
+    "title": "Share to Whatsapp"
+  },
+  {
+    "id": "more-option-5",
+    "title": "Share to Youtube",
+    "icon": "logo-youtube"
+  }
+]

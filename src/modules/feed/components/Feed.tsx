@@ -1,8 +1,8 @@
-import React, {useRef, useCallback, useMemo} from 'react';
-import {View, Text, ViewProps, StyleSheet} from 'react-native';
+import React, {useRef, useCallback, useState} from 'react';
+import {View, Text, ViewProps, StyleSheet, LayoutAnimation} from 'react-native';
 
 import {FeedDataType, FeedPrivacy} from '../types';
-import {Padding, BorderWidth, WindowHeight} from '../../../styles/spacing';
+import {Padding, BorderWidth} from '../../../styles/spacing';
 import {TextColor, BorderColor} from '../../../styles/color';
 import {FontSize, FontWeight} from '../../../styles/typography';
 import Avatar from '../../../components/Avatar';
@@ -17,6 +17,7 @@ import PrivacyIcon from './PrivacyIcon';
 import FeedPhotos from './FeedPhotos';
 import {BottomSheetModal, BottomSheetBackdrop} from '@gorhom/bottom-sheet';
 import ShareSheet from './ShareSheet';
+import {useNavigation} from '@react-navigation/native';
 
 interface Props extends ViewProps, FeedDataType {}
 
@@ -92,8 +93,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const ShareBottomSheetSnapPoints = ['50%', '50%'];
-const ReactionBottomSheetShapPoints = ['40%', '80%'];
+const ShareBottomSheetSnapPoints = ['50%', '80%'];
 
 const Feed = (props: Props) => {
   const {
@@ -105,15 +105,27 @@ const Feed = (props: Props) => {
     privacy = FeedPrivacy.public,
   } = props;
 
+  const navigation = useNavigation();
+  const [showMore, setShowMore] = useState(false);
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
   const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
+    LayoutAnimation.easeInEaseOut();
+    if (index === 1) {
+      setShowMore(true);
+    } else {
+      setShowMore(false);
+    }
   }, []);
 
   const handleSharePress = useCallback(() => {
     bottomSheetModalRef.current?.present();
+    navigation.setOptions({tabBarVisible: false});
   }, []);
+
+  const handleShareDismiss = useCallback(() => {
+    navigation.setOptions({tabBarVisible: true});
+  }, [navigation]);
 
   return (
     <>
@@ -165,12 +177,13 @@ const Feed = (props: Props) => {
         </View>
       </Card>
       <BottomSheetModal
-        index={1}
         dismissOnPanDown
         ref={bottomSheetModalRef}
+        onDismiss={handleShareDismiss}
+        onChange={handleSheetChanges}
         snapPoints={ShareBottomSheetSnapPoints}
         backdropComponent={BottomSheetBackdrop}>
-        <ShareSheet {...props} />
+        <ShareSheet {...props} showMore={showMore} />
       </BottomSheetModal>
     </>
   );
